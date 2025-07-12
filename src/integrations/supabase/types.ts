@@ -89,6 +89,286 @@ export type Database = {
         }
         Relationships: []
       }
+      coin_transactions: {
+        Row: {
+          amount: number
+          created_at: string
+          description: string | null
+          id: string
+          order_id: string | null
+          payment_id: string | null
+          transaction_type: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          description?: string | null
+          id?: string
+          order_id?: string | null
+          payment_id?: string | null
+          transaction_type: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          description?: string | null
+          id?: string
+          order_id?: string | null
+          payment_id?: string | null
+          transaction_type?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "coin_transactions_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "coin_transactions_payment_id_fkey"
+            columns: ["payment_id"]
+            isOneToOne: false
+            referencedRelation: "payments"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      orders: {
+        Row: {
+          coin_cost: number
+          created_at: string
+          external_order_id: string | null
+          id: string
+          payment_method: Database["public"]["Enums"]["payment_method"] | null
+          payment_status: Database["public"]["Enums"]["payment_status"]
+          quantity: number
+          remains: number | null
+          service_id: string
+          start_count: number | null
+          status: Database["public"]["Enums"]["order_status"]
+          target_url: string
+          total_price: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          coin_cost: number
+          created_at?: string
+          external_order_id?: string | null
+          id?: string
+          payment_method?: Database["public"]["Enums"]["payment_method"] | null
+          payment_status?: Database["public"]["Enums"]["payment_status"]
+          quantity: number
+          remains?: number | null
+          service_id: string
+          start_count?: number | null
+          status?: Database["public"]["Enums"]["order_status"]
+          target_url: string
+          total_price: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          coin_cost?: number
+          created_at?: string
+          external_order_id?: string | null
+          id?: string
+          payment_method?: Database["public"]["Enums"]["payment_method"] | null
+          payment_status?: Database["public"]["Enums"]["payment_status"]
+          quantity?: number
+          remains?: number | null
+          service_id?: string
+          start_count?: number | null
+          status?: Database["public"]["Enums"]["order_status"]
+          target_url?: string
+          total_price?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "orders_service_id_fkey"
+            columns: ["service_id"]
+            isOneToOne: false
+            referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      payment_settings: {
+        Row: {
+          account_name: string
+          account_number: string
+          id: string
+          is_active: boolean
+          payment_method: Database["public"]["Enums"]["payment_method"]
+          qr_code_url: string | null
+          updated_at: string
+          updated_by: string | null
+        }
+        Insert: {
+          account_name: string
+          account_number: string
+          id?: string
+          is_active?: boolean
+          payment_method: Database["public"]["Enums"]["payment_method"]
+          qr_code_url?: string | null
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Update: {
+          account_name?: string
+          account_number?: string
+          id?: string
+          is_active?: boolean
+          payment_method?: Database["public"]["Enums"]["payment_method"]
+          qr_code_url?: string | null
+          updated_at?: string
+          updated_by?: string | null
+        }
+        Relationships: []
+      }
+      payments: {
+        Row: {
+          admin_notes: string | null
+          amount: number
+          created_at: string
+          id: string
+          order_id: string | null
+          payment_method: Database["public"]["Enums"]["payment_method"]
+          payment_proof: string | null
+          status: Database["public"]["Enums"]["payment_status"]
+          transaction_id: string | null
+          updated_at: string
+          user_id: string
+          verified_at: string | null
+          verified_by: string | null
+        }
+        Insert: {
+          admin_notes?: string | null
+          amount: number
+          created_at?: string
+          id?: string
+          order_id?: string | null
+          payment_method: Database["public"]["Enums"]["payment_method"]
+          payment_proof?: string | null
+          status?: Database["public"]["Enums"]["payment_status"]
+          transaction_id?: string | null
+          updated_at?: string
+          user_id: string
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Update: {
+          admin_notes?: string | null
+          amount?: number
+          created_at?: string
+          id?: string
+          order_id?: string | null
+          payment_method?: Database["public"]["Enums"]["payment_method"]
+          payment_proof?: string | null
+          status?: Database["public"]["Enums"]["payment_status"]
+          transaction_id?: string | null
+          updated_at?: string
+          user_id?: string
+          verified_at?: string | null
+          verified_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "payments_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          coin_balance: number
+          created_at: string
+          email: string
+          full_name: string | null
+          id: string
+          phone: string | null
+          role: Database["public"]["Enums"]["user_role"]
+          total_spent: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          coin_balance?: number
+          created_at?: string
+          email: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          role?: Database["public"]["Enums"]["user_role"]
+          total_spent?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          coin_balance?: number
+          created_at?: string
+          email?: string
+          full_name?: string | null
+          id?: string
+          phone?: string | null
+          role?: Database["public"]["Enums"]["user_role"]
+          total_spent?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      services: {
+        Row: {
+          coin_price: number
+          created_at: string
+          description: string | null
+          id: string
+          is_active: boolean
+          max_quantity: number
+          min_quantity: number
+          name: string
+          price_per_unit: number
+          type: Database["public"]["Enums"]["service_type"]
+          updated_at: string
+        }
+        Insert: {
+          coin_price: number
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          max_quantity?: number
+          min_quantity?: number
+          name: string
+          price_per_unit: number
+          type: Database["public"]["Enums"]["service_type"]
+          updated_at?: string
+        }
+        Update: {
+          coin_price?: number
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean
+          max_quantity?: number
+          min_quantity?: number
+          name?: string
+          price_per_unit?: number
+          type?: Database["public"]["Enums"]["service_type"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -97,7 +377,16 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      order_status:
+        | "pending"
+        | "processing"
+        | "completed"
+        | "cancelled"
+        | "failed"
+      payment_method: "kpay" | "wavepay" | "bank_transfer" | "coins"
+      payment_status: "pending" | "completed" | "failed" | "refunded"
+      service_type: "followers" | "likes" | "views" | "shares"
+      user_role: "user" | "admin" | "support"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -224,6 +513,18 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      order_status: [
+        "pending",
+        "processing",
+        "completed",
+        "cancelled",
+        "failed",
+      ],
+      payment_method: ["kpay", "wavepay", "bank_transfer", "coins"],
+      payment_status: ["pending", "completed", "failed", "refunded"],
+      service_type: ["followers", "likes", "views", "shares"],
+      user_role: ["user", "admin", "support"],
+    },
   },
 } as const

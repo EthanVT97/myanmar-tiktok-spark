@@ -137,6 +137,51 @@ export type Database = {
           },
         ]
       }
+      content_ideas: {
+        Row: {
+          business_type: string
+          call_to_action: string
+          created_at: string
+          generated_content: Json
+          id: string
+          key_points: string
+          target_audience: string
+          trending_theme: string | null
+          updated_at: string
+          user_id: string
+          video_duration: string
+          video_purpose: string
+        }
+        Insert: {
+          business_type: string
+          call_to_action: string
+          created_at?: string
+          generated_content: Json
+          id?: string
+          key_points: string
+          target_audience: string
+          trending_theme?: string | null
+          updated_at?: string
+          user_id: string
+          video_duration: string
+          video_purpose: string
+        }
+        Update: {
+          business_type?: string
+          call_to_action?: string
+          created_at?: string
+          generated_content?: Json
+          id?: string
+          key_points?: string
+          target_audience?: string
+          trending_theme?: string | null
+          updated_at?: string
+          user_id?: string
+          video_duration?: string
+          video_purpose?: string
+        }
+        Relationships: []
+      }
       orders: {
         Row: {
           coin_cost: number

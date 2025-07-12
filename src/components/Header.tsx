@@ -51,15 +51,50 @@ const Header = () => {
           >
             Services
           </Link>
-          {user && (
-            <Link 
-              to="/dashboard" 
-              className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive('/dashboard') ? 'text-primary' : 'text-muted-foreground'
-              }`}
-            >
-              Dashboard
-            </Link>
+          {user ? (
+            <>
+              <Link 
+                to="/content-creator" 
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  isActive('/content-creator') ? 'text-primary' : 'text-muted-foreground'
+                }`}
+              >
+                AI Content
+              </Link>
+              <Link 
+                to="/orders" 
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  isActive('/orders') ? 'text-primary' : 'text-muted-foreground'
+                }`}
+              >
+                Orders
+              </Link>
+              <Link 
+                to="/payments" 
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  isActive('/payments') ? 'text-primary' : 'text-muted-foreground'
+                }`}
+              >
+                Payments
+              </Link>
+              <Link 
+                to="/dashboard" 
+                className={`text-sm font-medium transition-colors hover:text-primary ${
+                  isActive('/dashboard') ? 'text-primary' : 'text-muted-foreground'
+                }`}
+              >
+                Dashboard
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link to="#pricing" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+                Pricing
+              </Link>
+              <Link to="#about" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+                About
+              </Link>
+            </>
           )}
         </nav>
 

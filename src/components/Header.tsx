@@ -22,8 +22,13 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2">
-          <div className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+        <Link to="/" className="flex items-center space-x-3">
+          <img 
+            src="/lovable-uploads/4dbf40e9-f912-404e-a5c2-59b340dbc0c5.png" 
+            alt="YGNB2B Tech Group" 
+            className="h-8 w-auto"
+          />
+          <div className="text-xl font-bold bg-gradient-primary bg-clip-text text-transparent">
             TikTok Booster
           </div>
         </Link>
